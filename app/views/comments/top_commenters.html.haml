@@ -1,5 +1,15 @@
-- @top_commenters = Comment.top_commenters
-  - @top_commenters.each do |top|
-  - if top.user_id.present?
-    %p= User.find(top.user_id).name
-    %p= top.count
+.row
+  .col-md-8.col-md-offset-2.col-lg-8.col-lg-offset-2
+    %h1.text-center Top 10 commenters
+    %table.table.table-striped
+      %thead
+        %tr
+          %th User
+          %th Number of comments
+      %tbody
+      - @top_commenters = Comment.top_commenters
+        - @top_commenters.each do |top, i|
+        - if top.user_id.present?
+          %tr
+            %td= User.find(top.user_id).name
+            %td= top.count
